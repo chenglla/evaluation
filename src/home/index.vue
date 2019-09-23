@@ -12,10 +12,8 @@
   </div>
 </template>
 <script>
-import BScroll from 'better-scroll'
+// import BScroll from 'better-scroll'
 import evaluation from './evaluation'
-
-
 export default {
   components: { evaluation },
   name: 'home',
@@ -28,15 +26,20 @@ export default {
   },
   mounted () {
     // this.drawSunburst()
-    this.$nextTick(() => {
-      this.homeScroll = new BScroll(this.$refs.homeWrapper, {
-        click: true
-      })
-    })
+
+    // this.$nextTick(() => {
+    //
+    // })
+    // this._initScroll()
   },
   methods: {
     // gotoSearch () {
     //   this.$router.push({ path: '/search' })
+    // }
+    // _initScroll () {
+    //   this.homeScroll = new BScroll(this.$refs.homeWrapper, {
+    //     click: true
+    //   })
     // }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="eval">
 <!--  <div class="eval" ref="evalWrapper">-->
-    <div v-show="showTimu" class="eval_content">
+    <div class="eval_content">
 <!--      <form>-->
 <!--      <p>1、认识你的人倾向形容你为：</p>-->
       <group class="eval_content_button">
@@ -145,23 +145,55 @@
         <group-title slot="title"><span class="eval_content_title">28、你是这种喜欢……的人：</span></group-title>
         <radio :options="options27" class="eval_content_radio" @on-change="change" v-model="form.twenty_eight"></radio>
       </group>
-      <x-button @click.native="submit_t" text="提交"></x-button>
+      <x-button @click.native="submit_t" text="提交" class="button" type="primary"></x-button>
     </div>
-    <div v-show="showResult" class="eval_content">
-<!--      {{result}}-->
-      <div>
-        <h4 class="eval_content_h">简介</h4>
-        <div>{{mbti.title}}</div>
-        <div v-html="mbti.advanddis">{{mbti.advanddis}}</div>
-        <div v-html="mbti.describe">{{mbti.describe}}</div>
-      </div>
-      <div>
-        <h4 class="eval_content_h">职业推荐</h4>
-        <div v-for="item in professionInfoList">
-          <p class="eval_content_p" @click="major_info(item.id)">{{item.ktname}}--{{item.submajorName}}</p>
-        </div>
-      </div>
-    </div>
+    <!--<div v-show="showResult" class="eval_content">-->
+<!--&lt;!&ndash;      {{result}}&ndash;&gt;-->
+      <!--<div class="serviceInfo" ref="serviceInfo">-->
+        <!--<div>-->
+          <!--<div class="one-title">-->
+            <!--<span class="one-title__icon"></span>-->
+            <!--<span>评测结果</span>-->
+            <!--<span class="one-title__bacicon iconfont icon-jiantou">评测结果</span>-->
+          <!--</div>-->
+          <!--<div class="one-item">-->
+            <!--<p class="one__p">{{mbti.title}}</p>-->
+          <!--</div>-->
+
+          <!--<div class="one-item">-->
+            <!--<div class="one-item__header"></div>-->
+            <!--<div class="one-step">-->
+              <!--<div class="one-step__item" v-html="mbti.advanddis">-->
+                <!--<span class="ptext">{{mbti.advanddis}}</span>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <!--<div class="one-item">-->
+            <!--<div class="one-item__header"></div>-->
+            <!--<div class="one-step">-->
+              <!--<div class="one-step__item"  v-html="mbti.describe">-->
+                <!--<span>{{mbti.describe}}</span>-->
+              <!--</div>-->
+              <!--<h4 class="eval_content_h">职业推荐</h4>-->
+              <!--<div v-for="item in professionInfoList" :key="item" class="eval_content_p" @click="major_info(item.id)">-->
+                <!--<span  >{{item.ktname}}&#45;&#45;{{item.submajorName}}</span>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<h4 class="eval_content_h">简介</h4>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div>{{mbti.title}}</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div v-html="mbti.advanddis">{{mbti.advanddis}}</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div v-html="mbti.describe">{{mbti.describe}}</div>&ndash;&gt;-->
+      <!--</div>-->
+      <!--&lt;!&ndash;<div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<h4 class="eval_content_h">职业推荐</h4>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div v-for="item in professionInfoList" :key="item">&ndash;&gt;-->
+          <!--&lt;!&ndash;<p class="eval_content_p" @click="major_info(item.id)">{{item.ktname}}&#45;&#45;{{item.submajorName}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--</div>-->
   </div>
 </template>
 <script>
@@ -178,9 +210,10 @@ export default {
       mbti: [],
       showTimu: true,
       showResult: false,
-      result: [],
+      result: {},
       // twenty_eight: '',
       evalScroll: null,
+      flag: false,
       // list: [],
       form: {
         one: '',
@@ -453,6 +486,7 @@ export default {
   //     Bus.$emit('val', this.result)
   //   }
   // },
+
   methods: {
     change (key, value, id) {
       // console.log(this.demoRequired)
@@ -461,62 +495,86 @@ export default {
       // console.log(this.form.twenty_eight)
     },
     submit_t () {
-      request({
-        url: '/mbti/submitEvaluate',
-        method: 'POST',
-        params: {
-          result: this.form,
-          openid: '123'
+      this.flag = false
+      for (var i in this.form) {
+        if (this.form[i] === '') {
+          this.flag = true
         }
-      }).then(response => {
-        this.mbti = response.data.data.mbti
-        this.professionInfoList = response.data.data.professionInfoList
-        this.showTimu = false
-        this.showResult = true
-        // console.log(this.result)
-        // Bus.$emit('val', this.result)
-        // console.log('val:', this.result)
-        // this.$router.push('/result')
-        // console.log('val2:', this.result)
-      })
+      }
+      if (this.flag === true) {
+        alert('请答完所有题再进行提交！')
+      } else {
+        request({
+          url: '/mbti/submitEvaluate',
+          method: 'POST',
+          params: {
+            result: this.form,
+            openid: '123'
+          }
+        }).then(response => {
+          this.mbti = response.data.data.mbti
+          this.professionInfoList = response.data.data.professionInfoList
+          // this.showTimu = false
+          // this.showResult = true
+          // console.log(response.data.data)
+          // console.log(this.result)
+          // console.log('val:', this.result)
+          // console.log(this.mbti)
+          this.result = response.data.data
+          this.$store.dispatch('changeMsg', this.result)
+
+          // this.$router.push({
+          //   path: '/result',
+          //   query: {
+          //     result: this.result
+          //   }
+          // })
+          this.$router.push('/result')
+          // console.log('val2:', this.result)
+        })
+      }
+
       // console.log(this.form)
-    },
-    major_info (id) {
-      this.$router.push({
-        path: '/major_info',
-        query: {
-          id: id
-        }
-      })
-      // request({
-      //   url: '/profession/getList',
-      //   method: 'GET',
-      //   params: {
-      //     professionInfoId: id
-      //   }
-      // }).then(response => {
-      //   this.major_content = response.data.data
-      //   // this.mbti = response.data.data.mbti
-      //   // this.professionInfoList = response.data.data.professionInfoList
-      //   // this.showTimu = false
-      //   // this.showResult = true
-      //   // console.log(this.result)
-      //   // Bus.$emit('val', this.result)
-      //   // console.log('val:', this.result)
-      //   // this.$router.push('/result')
-      //   // console.log('val2:', this.result)
-      // })
     }
+    // major_info (id) {
+    //   this.$router.push({
+    //     path: '/major_info',
+    //     query: {
+    //       id: id
+    //     }
+    //   })
+    //   // request({
+    //   //   url: '/profession/getList',
+    //   //   method: 'GET',
+    //   //   params: {
+    //   //     professionInfoId: id
+    //   //   }
+    //   // }).then(response => {
+    //   //   this.major_content = response.data.data
+    //   //   // this.mbti = response.data.data.mbti
+    //   //   // this.professionInfoList = response.data.data.professionInfoList
+    //   //   // this.showTimu = false
+    //   //   // this.showResult = true
+    //   //   // console.log(this.result)
+    //   //   // Bus.$emit('val', this.result)
+    //   //   // console.log('val:', this.result)
+    //   //   // this.$router.push('/result')
+    //   //   // console.log('val2:', this.result)
+    //   // })
+    // }
   }
+  // beforeDestroy () {
+  //   Bus.$emit('val', this.result)
+  // },
 }
 </script>
 <style>
   /*.eval{*/
-  /*  background-color: aliceblue;*/
-  /*  height: calc(100% - 50px);*/
-  /*  overflow: hidden;*/
-  /*  flex: 1;*/
-  /*  !*background: #fff;*!*/
+    /*background-color: aliceblue;*/
+    /*height: calc(100% - 50px);*/
+    /*overflow: hidden;*/
+    /*flex: 1;*/
+    /*!*background: #fff;*!*/
   /*}*/
 .eval_content{
   font-size: 14px;
@@ -539,6 +597,14 @@ export default {
   }
   .eval_content_p{
     text-indent: 2em;
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 10px;
+    background-color: #99CC99;
+    border-radius: 8px;
+    color: #666666;
+    font-weight: bold;
+    box-shadow: 0 3px 3px black;
   }
   .eval_content_h{
     margin: 10px 5px;
@@ -547,5 +613,8 @@ export default {
     font-size: 14px;
     color: #000;
     /*font-weight: bold;*/
+  }
+  .button {
+    margin-top: 20px;
   }
 </style>

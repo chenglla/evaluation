@@ -3,16 +3,25 @@ import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
-const major_info = () => import('@/home/major_info')
+const majorInfo = () => import('@/home/major_info')
 const home = () => import('@/home/index')
 const result = () => import('@/home/result')
+const homepage = () => import('@/home/homepage')
 export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/home'
+      redirect: '/homepage'
       // name: 'HelloWorld',
       // component: HelloWorld
+    },
+    {
+      path: '/homepage',
+      components: {
+        default: homepage
+      },
+      name: 'homepage',
+      meta: { tab: 'homepage', title: 'homepage' }
     },
     {
       path: '/home',
@@ -33,7 +42,7 @@ export default new Router({
     {
       path: '/major_info',
       components: {
-        default: major_info
+        default: majorInfo
       },
       name: 'major_info',
       meta: { tab: 'major_info', title: 'major_info' }
