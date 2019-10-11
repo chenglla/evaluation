@@ -1,9 +1,9 @@
 <template>
-  <div class="eval">
-<!--  <div class="eval" ref="evalWrapper">-->
+<!--  <div class="eval">-->
+  <div class="eval" ref="evalWrapper">
+    <p class="eval_content_head">开始测评</p>
     <div class="eval_content">
 <!--      <form>-->
-<!--      <p>1、认识你的人倾向形容你为：</p>-->
       <group class="eval_content_button">
         <group-title slot="title"><span class="eval_content_title">1、认识你的人倾向形容你为：</span></group-title>
 <!--      <group class="eval_content_button">-->
@@ -101,11 +101,12 @@
         <group-title slot="title"><span class="eval_content_title">19、你是此类型的人：</span></group-title>
 
         <radio :options="options18" @on-change="change" class="eval_content_radio" v-model="form.nineteen"></radio>
-      </group><group class="eval_content_button">
-      <group-title slot="title"><span class="eval_content_title">20、你倾向如此做决定：</span></group-title>
+      </group>
+      <group class="eval_content_button">
+        <group-title slot="title"><span class="eval_content_title">20、你倾向如此做决定：</span></group-title>
 
-      <radio :options="options19" @on-change="change" class="eval_content_radio" v-model="form.twenty"></radio>
-    </group>
+        <radio :options="options19" @on-change="change" class="eval_content_radio" v-model="form.twenty"></radio>
+      </group>
       <group class="eval_content_button">
         <group-title slot="title"><span class="eval_content_title">21、你倾向从何处得到力量：</span></group-title>
 
@@ -193,12 +194,13 @@
           <!--&lt;!&ndash;<p class="eval_content_p" @click="major_info(item.id)">{{item.ktname}}&#45;&#45;{{item.submajorName}}</p>&ndash;&gt;-->
         <!--&lt;!&ndash;</div>&ndash;&gt;-->
       <!--&lt;!&ndash;</div>&ndash;&gt;-->
-    <!--</div>-->
-  </div>
+    </div>
+<!--  </div>-->
 </template>
 <script>
 import { Radio, Group, Checker, CheckerItem, GroupTitle, XButton } from 'vux'
 import request from '@/utils/request'
+// import BScroll from 'better-scroll'
 // import Bus from '@/utils/bus'
 export default {
   components: {
@@ -473,66 +475,57 @@ export default {
 
     }
   },
-  // mounted () {
-  //   this.$nextTick(() => {
-  //     this.evalScroll = new BScroll(this.$refs.evalWrapper, {
-  //       click: true
-  //     })
-  //   })
-  // },
-  // watch: {
-  //   submit_t () {
-  //     console.log('监听：', this.result)
-  //     Bus.$emit('val', this.result)
-  //   }
-  // },
-
+  mounted () {
+    this.$router.afterEach((to, from, next) => {
+      window.scrollTo(0, 0)
+    })
+    // this.$nextTick(() => {
+    //   this.evalScroll = new BScroll(this.$refs.evalWrapper, {
+    //     click: true
+    //   })
+    // })
+  },
   methods: {
-    change (key, value, id) {
+    change (key, value) {
       // console.log(this.demoRequired)
-      console.log('change:', key, value, id)
+      console.log('change:', key, value)
+      console.log('form:', this.form)
       // this.twenty_eight = item
       // console.log(this.form.twenty_eight)
     },
     submit_t () {
-      this.flag = false
-      for (var i in this.form) {
-        if (this.form[i] === '') {
-          this.flag = true
+      // this.flag = false
+      // for (const i in this.form) {
+      //   if (this.form[i] === '') {
+      //     this.flag = true
+      //   }
+      // }
+      // if (this.flag === true) {
+      //   alert('请答完所有题再进行提交！')
+      // } else {
+      request({
+        url: '/mbti/submitEvaluate',
+        method: 'POST',
+        params: {
+          result: this.form,
+          openid: '123'
         }
-      }
-      if (this.flag === true) {
-        alert('请答完所有题再进行提交！')
-      } else {
-        request({
-          url: '/mbti/submitEvaluate',
-          method: 'POST',
-          params: {
-            result: this.form,
-            openid: '123'
-          }
-        }).then(response => {
-          this.mbti = response.data.data.mbti
-          this.professionInfoList = response.data.data.professionInfoList
-          // this.showTimu = false
-          // this.showResult = true
-          // console.log(response.data.data)
-          // console.log(this.result)
-          // console.log('val:', this.result)
-          // console.log(this.mbti)
-          this.result = response.data.data
-          this.$store.dispatch('changeMsg', this.result)
+      }).then(response => {
+        this.mbti = response.data.data.mbti
+        this.professionInfoList = response.data.data.professionInfoList
+        this.result = response.data.data
+        this.$store.dispatch('changeMsg', this.result)
 
-          // this.$router.push({
-          //   path: '/result',
-          //   query: {
-          //     result: this.result
-          //   }
-          // })
-          this.$router.push('/result')
-          // console.log('val2:', this.result)
-        })
-      }
+        // this.$router.push({
+        //   path: '/result',
+        //   query: {
+        //     result: this.result
+        //   }
+        // })
+        this.$router.push('/result')
+        // console.log('val2:', this.result)
+      })
+      // }
 
       // console.log(this.form)
     }
@@ -576,16 +569,31 @@ export default {
     /*flex: 1;*/
     /*!*background: #fff;*!*/
   /*}*/
+  .eval {
+    margin: 10px;
+    /*box-shadow: 2px 2px 6px 3px rgba(130,120,150, .6);*/
+    /*border-radius: 10px;*/
+  }
 .eval_content{
+  padding-top: 10px;
+  padding-bottom: 10px;
   font-size: 14px;
-  margin: 20px;
+  margin: 0 10px 10px;
   /*background-color: aliceblue;*/
 }
+.eval_content_head {
+  margin-top: 20px;
+  margin-bottom: -10px;
+  margin-left: -5px;
+  font-size: 16px;
+  font-weight: bold;
+}
   .eval_content_button{
-    /*width: 50%;*/
-    /*margin-left: 30%;*/
-    margin: 5px;
-    background-color: #fff;
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-shadow: 2px 2px 6px 3px rgba(130,120,150, .6);
+    border-radius: 10px;
   }
   .eval_content_radio{
     text-decoration-line: none;

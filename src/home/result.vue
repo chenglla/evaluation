@@ -1,11 +1,13 @@
 <template>
   <div>
     <div class="eval_content">
-      <!--      {{result}}-->
       <div class="serviceInfo" ref="serviceInfo">
         <div>
           <div class="one-title">
-            <span class="one-title__icon"></span>
+            <div class="return__icon" @click="gotoPage">
+              <i class="iconfont iconllfanhui4"></i>
+            </div>
+<!--            <span class="one-title__icon"></span>-->
             <span>评测结果</span>
             <span class="one-title__bacicon iconfont icon-jiantou">评测结果</span>
           </div>
@@ -14,7 +16,6 @@
           </div>
 
           <div class="one-item">
-            <div class="one-item__header"></div>
             <div class="one-step">
               <div class="one-step__item" v-html="mbti.advanddis">
                 <span class="ptext">{{mbti.advanddis}}</span>
@@ -22,35 +23,24 @@
             </div>
           </div>
 
-          <div class="one-item">
-            <div class="one-item__header"></div>
-            <div class="one-step">
-              <div class="one-step__item"  v-html="mbti.describe">
-                <span>{{mbti.describe}}</span>
-              </div>
-              <h4 class="eval_content_h">职业推荐</h4>
-              <div v-for="item in professionInfoList" :key="item" class="eval_content_p" @click="major_info(item.id)">
-                <span  >{{item.ktname}}--{{item.submajorName}}</span>
-              </div>
-            </div>
-          </div>
+<!--          <div class="one-item">-->
+<!--            <div class="one-item__header"></div>-->
+<!--            <div class="one-step">-->
+<!--              <div class="one-step__item"  v-html="mbti.describe">-->
+<!--                <span>{{mbti.describe}}</span>-->
+<!--              </div>-->
+<!--              <h4 class="eval_content_h">职业推荐</h4>-->
+<!--              <div v-for="item in professionInfoList" :key="item" class="eval_content_p" @click="major_info(item.id)">-->
+<!--                <span  >{{item.ktname}}&#45;&#45;{{item.submajorName}}</span>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
         </div>
-        <!--<h4 class="eval_content_h">简介</h4>-->
-        <!--<div>{{mbti.title}}</div>-->
-        <!--<div v-html="mbti.advanddis">{{mbti.advanddis}}</div>-->
-        <!--<div v-html="mbti.describe">{{mbti.describe}}</div>-->
       </div>
-      <!--<div>-->
-      <!--<h4 class="eval_content_h">职业推荐</h4>-->
-      <!--<div v-for="item in professionInfoList" :key="item">-->
-      <!--<p class="eval_content_p" @click="major_info(item.id)">{{item.ktname}}&#45;&#45;{{item.submajorName}}</p>-->
-      <!--</div>-->
-      <!--</div>-->
     </div>
   </div>
 </template>
 <script>
-// import Bus from '@/utils/bus'
 export default {
   data () {
     return {
@@ -58,28 +48,10 @@ export default {
       professionInfoList: []
     }
   },
-  created () {
-    // Bus.$on('val', (data) => {
-    //   // console.log('1111111111:', data)
-    //   // this.item = data
-    //   // console.log('22222222', this.item)
-    //   this.mbti = data.mbti
-    //   this.professionInfoList =data.professionInfoList
-    //   // localStorage.setItem('result', data)
-    //   // console.log(this.mbti)
-    // })
-  },
   mounted () {
-    // this.$nextTick(() => {
-    //
-    // })
-    // this.mbti = this.$route.query.result.mbti
-    // this.professionInfoList = this.$route.query.result.professionInfoList
-    // this.mbti = localStorage.getItem('result')
-    // this.professionInfoList = localStorage.getItem('result').professionInfoList
-    // console.log('ss')
-    // console.log('ss', this.$store.state.msg)
-
+    this.$router.afterEach((to, from, next) => {
+      window.scrollTo(0, 0)
+    })
     this.mbti = this.$store.state.msg.mbti
     this.professionInfoList = this.$store.state.msg.professionInfoList
   },
@@ -91,29 +63,39 @@ export default {
           id: id
         }
       })
+    },
+    gotoPage () {
+      console.log('return')
+      this.$router.go(-1)
     }
   }
 }
 </script>
-<style>
+<style scoped lang="scss">
   .eval_content{
     font-size: 14px;
     margin: 20px;
     /*background-color: aliceblue;*/
   }
-  .eval_content_button{
-    /*width: 50%;*/
-    /*margin-left: 30%;*/
-    margin: 5px;
-    background-color: #fff;
+  .iconfont {
+    position: absolute;
+    font-size: 24px;
   }
-  .eval_content_radio{
-    text-decoration-line: none;
-    font-size: 12px;
-    color: darkgray;
-    padding-left: 10px;
-    /*margin-left: 30%;*/
-    /*background-color: aliceblue;*/
+  /*.major-info-return {
+    height: 20px;
+    margin-top: -20px;
+    margin-left: 20px;
+    z-index: 1000;
+    flex: none;
+  }*/
+  .major-info-title {
+    color: #3c3c3c;
+    text-align: center;
+    font-size: 16px;
+    padding: 16px 10px 16px 50px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   .eval_content_p{
     text-indent: 2em;
@@ -129,11 +111,6 @@ export default {
   .eval_content_h{
     margin: 10px 5px;
   }
-  .eval_content_title{
-    font-size: 14px;
-    color: #000;
-    /*font-weight: bold;*/
-  }
   .serviceInfo {
     height: calc(100% - 60px);
     overflow: hidden;
@@ -147,14 +124,19 @@ export default {
     font-size: 18px;
     font-weight: bold;
   }
-  .one-title__subtitle {
+  .return__icon {
+    margin-left: 40px;
     position: absolute;
-    left: 50%;
-    font-size: 13px;
-    bottom: -24px;
-    opacity: 0.3;
-    font-weight: 400;
+    height: 30px;
   }
+  /*.one-title__subtitle {*/
+  /*  position: absolute;*/
+  /*  left: 50%;*/
+  /*  font-size: 13px;*/
+  /*  bottom: -24px;*/
+  /*  opacity: 0.3;*/
+  /*  font-weight: 400;*/
+  /*}*/
   .one-title__icon {
     /*background: url('../assets/img/woshou.png') no-repeat;*/
     width: 40px;
@@ -182,7 +164,7 @@ export default {
     position: relative;
     overflow: hidden;
   }
-  .one-step {
+  /*.one-step {
     margin-bottom: 20px;
   }
   .one__fee {
@@ -279,5 +261,5 @@ export default {
   }
   .ptext b {
     color: red;
-  }
+  }*/
 </style>

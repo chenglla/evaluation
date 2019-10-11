@@ -2,20 +2,17 @@
   <div class="home-page"  ref="homeWrapper">
     <div class="home_content">
       <div class="content">MBTI职业测评</div>
+      <first-header></first-header>
       <evaluation></evaluation>
-<!--      <div class="second">-->
-<!--        <div ref="sunChart" class="second_chart"></div>-->
-<!--      </div>-->
-<!--      <div class="third">中心联动屏幕</div>-->
-      <!--    <div class="seven_echarts" ref="chart"></div>-->
     </div>
   </div>
 </template>
 <script>
 // import BScroll from 'better-scroll'
 import evaluation from './evaluation'
+import firstHeader from './firstHeader'
 export default {
-  components: { evaluation },
+  components: { evaluation, firstHeader },
   name: 'home',
   data () {
     return {
@@ -25,7 +22,6 @@ export default {
     }
   },
   mounted () {
-    // this.drawSunburst()
 
     // this.$nextTick(() => {
     //
@@ -33,9 +29,6 @@ export default {
     // this._initScroll()
   },
   methods: {
-    // gotoSearch () {
-    //   this.$router.push({ path: '/search' })
-    // }
     // _initScroll () {
     //   this.homeScroll = new BScroll(this.$refs.homeWrapper, {
     //     click: true
@@ -44,7 +37,7 @@ export default {
   }
 }
 </script>
-<style scoped="">
+<style scoped>
   .home-page {
        height: calc(100% - 50px);
        overflow: hidden;
