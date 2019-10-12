@@ -23,18 +23,18 @@
             </div>
           </div>
 
-<!--          <div class="one-item">-->
-<!--            <div class="one-item__header"></div>-->
-<!--            <div class="one-step">-->
-<!--              <div class="one-step__item"  v-html="mbti.describe">-->
-<!--                <span>{{mbti.describe}}</span>-->
-<!--              </div>-->
-<!--              <h4 class="eval_content_h">职业推荐</h4>-->
-<!--              <div v-for="item in professionInfoList" :key="item" class="eval_content_p" @click="major_info(item.id)">-->
-<!--                <span  >{{item.ktname}}&#45;&#45;{{item.submajorName}}</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
+          <div class="one-item">
+            <div class="one-item__header"></div>
+            <div class="one-step">
+              <div class="one-step__item"  v-html="mbti.describe">
+                <span>{{mbti.describe}}</span>
+              </div>
+              <h4 class="eval_content_h">职业推荐</h4>
+              <div v-for="item in professionInfoList" :key="item" class="eval_content_p" @click="major_info(item.id)">
+                <span  >{{item.ktname}}--{{item.submajorName}}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
