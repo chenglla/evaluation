@@ -29,7 +29,7 @@
       </group>
 
       <group class="eval_content_button">
-        <group-title slot="title"><span class="eval_content_title">5、当和某人分手时：</span></group-title>
+        <group-title slot="title"><span class="eval_content_title">5、当你遇到伤心的事情时：</span></group-title>
 
         <radio :options="options4" @on-change="change" class="eval_content_radio" v-model="form.five"></radio>
       </group>
@@ -44,12 +44,12 @@
         <radio :options="options6" @on-change="change" class="eval_content_radio" v-model="form.seven"></radio>
       </group>
       <group class="eval_content_button">
-        <group-title slot="title"><span class="eval_content_title">8、过去，你的爱人和恋人倾向对你说：</span></group-title>
+        <group-title slot="title"><span class="eval_content_title">8、过去，你的朋友倾向对你说：</span></group-title>
 
         <radio :options="options7" @on-change="change" class="eval_content_radio" v-model="form.eight"></radio>
       </group>
       <group class="eval_content_button">
-        <group-title slot="title"><span class="eval_content_title">9、当你对一个约会觉得放心时，你偏向谈论：</span></group-title>
+        <group-title slot="title"><span class="eval_content_title">9、当你和别人聊天时，你偏向谈论：</span></group-title>
 
         <radio :options="options8" @on-change="change" class="eval_content_radio" v-model="form.nine"></radio>
       </group><group class="eval_content_button">
@@ -58,12 +58,12 @@
       <radio :options="options9" @on-change="change" class="eval_content_radio" v-model="form.ten"></radio>
     </group>
       <group class="eval_content_button">
-        <group-title slot="title"><span class="eval_content_title">11、在约会中，你通常：</span></group-title>
+        <group-title slot="title"><span class="eval_content_title">11、在参加集体活动时，你通常：</span></group-title>
 
         <radio :options="options10" @on-change="change" class="eval_content_radio" v-model="form.eleven"></radio>
       </group>
       <group class="eval_content_button">
-        <group-title slot="title"><span class="eval_content_title">12、在第一次约会中：</span></group-title>
+        <group-title slot="title"><span class="eval_content_title">12、在一次活动中：</span></group-title>
 
         <radio :options="options11" @on-change="change" class="eval_content_radio" v-model="form.twelve"></radio>
       </group>
@@ -78,7 +78,7 @@
         <radio :options="options13" @on-change="change" class="eval_content_radio" v-model="form.fourteen"></radio>
       </group>
       <group class="eval_content_button">
-        <group-title slot="title"><span class="eval_content_title">15、过去，你遇见你大部分的恋人是：</span></group-title>
+        <group-title slot="title"><span class="eval_content_title">15、过去，你遇见你大部分的朋友是：</span></group-title>
 
         <radio :options="options14" @on-change="change" class="eval_content_radio" v-model="form.fifteen"></radio>
       </group>
@@ -123,7 +123,7 @@
         <radio :options="options22" @on-change="change" class="eval_content_radio" v-model="form.twenty_three"></radio>
       </group>
       <group class="eval_content_button">
-        <group-title slot="title"><span class="eval_content_title">24、当你不同意恋人的想法时： </span></group-title>
+        <group-title slot="title"><span class="eval_content_title">24、当你不同意同学的想法时： </span></group-title>
 
         <radio :options="options23" @on-change="change" class="eval_content_radio" v-model="form.twenty_four"></radio>
       </group>
@@ -143,7 +143,7 @@
         <radio :options="options26" @on-change="change" class="eval_content_radio" v-model="form.twenty_seven"></radio>
       </group>
       <group class="eval_content_button">
-        <group-title slot="title"><span class="eval_content_title">28、你是这种喜欢……的人：</span></group-title>
+        <group-title slot="title"><span class="eval_content_title">28、你更倾向于做一个……的人：</span></group-title>
         <radio :options="options27" class="eval_content_radio" @on-change="change" v-model="form.twenty_eight"></radio>
       </group>
       <x-button @click.native="submit_t" text="提交" class="button" type="primary"></x-button>
@@ -258,11 +258,11 @@ export default {
       }],
       options1: [{
         key: 1,
-        value: 'A 与恋人到有很多人且社交活动频繁的地方。'
+        value: 'A 与朋友到有很多人且社交活动频繁的地方。'
       },
       {
         key: 2,
-        value: 'B 呆在家中与恋人做一些特别的事情，例如说观赏一部有趣的录影带并享用你最喜欢的外卖食物。'
+        value: 'B 呆在家中安静的做一些自己喜欢的事情，例如说观赏一部有趣的录影带并享用你最喜欢的外卖食物。'
       }],
       options2: [{
         key: 1,
@@ -286,11 +286,11 @@ export default {
       },
       {
         key: 2,
-        value: 'B 虽然你觉得受伤，但一旦下定决心，你会直截了当地将过去恋人的影子甩开。'
+        value: 'B.虽然你觉得伤心难过，但一旦下定想清楚，你很快会恢复起来。'
       }],
       options5: [{
         key: 1,
-        value: 'A 情感上的相容性：表达爱意和对另一半的需求很敏感。'
+        value: 'A 情感上的相容性：更倾向于感性的沟通。'
       },
       {
         key: 2,
@@ -318,7 +318,7 @@ export default {
       },
       {
         key: 2,
-        value: 'B 实际的、具体的、关于“此时此地”的事物。例如，你也许会谈论品酒的好方法，或你即将要参加的新奇旅程。'
+        value: 'B 实际的、具体的、关于“此时此地”的事物。例如，你也许会谈论学习的方法、技巧，或你即将要参加的比赛、活动。'
       }],
       options9: [{
         key: 1,
@@ -334,11 +334,11 @@ export default {
       },
       {
         key: 2,
-        value: 'B 较安静并保留，直到你觉得舒服。'
+        value: 'B 较安静、保留个人想法。'
       }],
       options11: [{
         key: 1,
-        value: 'A 若你所约的人来迟了，你会很不高兴。'
+        value: 'A 若其他参加活动的人来迟了，你会很不高兴。'
       },
       {
         key: 2,
@@ -362,11 +362,11 @@ export default {
       }],
       options14: [{
         key: 1,
-        value: 'A 在宴会中、夜总会、工作上、休闲活动中、会议上或当朋友介绍我给他们的朋友时。'
+        value: 'A 在比赛、活动、休闲活动中或当朋友介绍我给他们的朋友。'
       },
       {
         key: 2,
-        value: 'B 通过私人的方式，例如个人广告、录影约会，或是由亲密的朋友和家人介绍。'
+        value: 'B 通过私人的方式，一般是添加同班同学的微信、QQ 或是由亲密的朋友和家人介绍。'
       }],
       options15: [{
         key: 1,
@@ -374,7 +374,7 @@ export default {
       },
       {
         key: 2,
-        value: 'B 与其活在想像里，不如活在现实中。确'
+        value: 'B 与其活在想像里，不如活在现实中。'
       }],
       options16: [{
         key: 1,
@@ -418,11 +418,11 @@ export default {
       }],
       options21: [{
         key: 1,
-        value: 'A 偏向于去想像一大堆关于即将来临的约会的事情。'
+        value: 'A 偏向于去想像一大堆关于即将来临的事情。'
       },
       {
         key: 2,
-        value: 'B 偏向于拘谨地想象即将来临的约会，只期待让它自然地发生。'
+        value: 'B 偏向于拘谨地想象即将来临的事情，只期待让它自然地发生。'
       }],
       options22: [{
         key: 1,

@@ -5,14 +5,14 @@
       <tab v-model="index01" :line-width="1" bar-active-color="#668599">
 <!--        <tab-item >测评分类</tab-item>-->
         <tab-item selected @on-item-click="clickJob">职业探测</tab-item>
-        <tab-item @on-item-click="clickAttainment">基本素养</tab-item>
-        <tab-item @on-item-click="clickAbility">能力测评</tab-item>
-        <tab-item @on-item-click="clickAttitude">态度测试</tab-item>
-        <tab-item @on-item-click="clickCharacter">性格特点</tab-item>
+<!--        <tab-item @on-item-click="clickAttainment">基本素养</tab-item>-->
+<!--        <tab-item @on-item-click="clickAbility">能力测评</tab-item>-->
+<!--        <tab-item @on-item-click="clickAttitude">态度测试</tab-item>-->
+<!--        <tab-item @on-item-click="clickCharacter">性格特点</tab-item>-->
         <tab-item @on-item-click="clickCareer">生涯测试</tab-item>
-        <tab-item @on-item-click="clickDecision">决策风格</tab-item>
+<!--        <tab-item @on-item-click="clickDecision">决策风格</tab-item>-->
         <tab-item @on-item-click="clickComprehensive">综合素养</tab-item>
-        <tab-item @on-item-click="onItemClick">素养</tab-item>
+<!--        <tab-item @on-item-click="onItemClick">素养</tab-item>-->
       </tab>
     </div>
     <div class="serviceInfo" ref="serviceInfo">
@@ -48,7 +48,21 @@
       <div v-if="showWhich === 'ability'" class="one-item_all">ability</div>
       <div v-if="showWhich === 'attitude'" class="one-item_all">attitude</div>
       <div v-if="showWhich === 'character'" class="one-item_all">character</div>
-      <div v-if="showWhich === 'career'" class="one-item_all">career</div>
+      <div v-if="showWhich === 'career'" class="one-item_all">
+        <div class="one-item" @click="gotopage">
+          <div class="one-item__header">
+            <div class="one-item_content_img">
+              <img src="../assets/5677.jpg" width="60">
+            </div>
+            <div class="one-item_content">
+               <span>
+                 生涯控制力
+               </span>
+            </div>
+          </div>
+          <!--          <p class="one__p">MBT理论认为一个人的性格可以从四个角度进行分析，用字母代表如下：驱动力来源；外向E-内向I接受信息的方式；感觉S一直觉N决策的方式；思维T-情感F对待不确定性的态度；判断J-知觉P</p>-->
+        </div>
+      </div>
       <div v-if="showWhich === 'decision'" class="one-item_all">decision</div>
       <div v-if="showWhich === 'attainment'" class="one-item_all">
         <div class="one-item" @click="gotopage">
