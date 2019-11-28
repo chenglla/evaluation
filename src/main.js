@@ -9,6 +9,7 @@ import vueTap from 'vue-js-tap'
 import echarts from 'echarts'
 import { ToastPlugin, ConfirmPlugin, LoadingPlugin, Calendar, DatetimePlugin, Toast } from 'vux'
 import store from './store'
+import 'jQuery'
 
 Vue.use(VueRouter)
 Vue.use(vueTap)

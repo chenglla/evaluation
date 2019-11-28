@@ -14,13 +14,18 @@
     "better-scroll": "^1.15.2",
     "echarts": "^4.3.0",
     "fastclick": "^1.0.6",
+    "jQuery": "^1.7.4",
+    "jsdom": "^15.2.1",
+    "location": "0.0.1",
+    "navigator": "^1.0.1",
     "scss-loader": "0.0.1",
     "vue": "^2.5.2",
     "vue-js-tap": "^1.2.5",
     "vue-router": "^3.0.1",
     "vuex": "^3.1.1",
     "vux": "^2.9.4",
-    "vux-loader": "^1.2.9"
+    "vux-loader": "^1.2.9",
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

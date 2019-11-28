@@ -7,6 +7,8 @@ const majorInfo = () => import('@/home/major_info')
 const home = () => import('@/home/index')
 const result = () => import('@/home/result')
 const homepage = () => import('@/home/homepage')
+const huashi = () => import('@/type3/huashi')
+const type3_answer = () => import('@/type3/type3_answer')
 export default new Router({
   routes: [
     {
@@ -30,6 +32,22 @@ export default new Router({
       },
       name: 'home',
       meta: { tab: 'home', title: 'home' }
+    },
+    { // 华东师范测评
+      path: '/huashi',
+      components: {
+        default: huashi
+      },
+      name: 'huashi',
+      meta: { tab: 'huashi', title: 'huashi' }
+    },
+    { // 华东师范测评结果
+      path: '/type3_answer',
+      components: {
+        default: type3_answer
+      },
+      name: 'type3_answer',
+      meta: { tab: 'type3_answer', title: 'type3_answer' }
     },
     {
       path: '/result',

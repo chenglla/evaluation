@@ -17,7 +17,7 @@
     </div>
     <div class="serviceInfo" ref="serviceInfo">
       <div class="one-item_all" v-if="showWhich === 'job'">
-        <div class="one-item" @click="gotopage">
+        <div class="one-item" @click="gotopage(1)">
           <div class="one-item__header">
             <div class="one-item_content_img">
               <img src="../assets/5677.jpg" width="60">
@@ -30,7 +30,7 @@
           </div>
 <!--          <p class="one__p">MBT理论认为一个人的性格可以从四个角度进行分析，用字母代表如下：驱动力来源；外向E-内向I接受信息的方式；感觉S一直觉N决策的方式；思维T-情感F对待不确定性的态度；判断J-知觉P</p>-->
         </div>
-        <div class="one-item" @click="gotopage">
+        <div class="one-item" @click="gotopage(1)">
           <div class="one-item__header">
             <div class="one-item_content_img">
               <img src="../assets/5678.jpg" width="60">
@@ -49,7 +49,20 @@
       <div v-if="showWhich === 'attitude'" class="one-item_all">attitude</div>
       <div v-if="showWhich === 'character'" class="one-item_all">character</div>
       <div v-if="showWhich === 'career'" class="one-item_all">
-        <div class="one-item" @click="gotopage">
+        <div class="one-item" @click="gotopage(3)">
+          <div class="one-item__header">
+            <div class="one-item_content_img">
+              <img src="../assets/23.jpg" width="60">
+            </div>
+            <div class="one-item_content">
+               <span>
+                 华师学习模型
+               </span>
+            </div>
+          </div>
+          <!--          <p class="one__p">MBT理论认为一个人的性格可以从四个角度进行分析，用字母代表如下：驱动力来源；外向E-内向I接受信息的方式；感觉S一直觉N决策的方式；思维T-情感F对待不确定性的态度；判断J-知觉P</p>-->
+        </div>
+        <div class="one-item" @click="gotopage(3)">
           <div class="one-item__header">
             <div class="one-item_content_img">
               <img src="../assets/5677.jpg" width="60">
@@ -95,8 +108,29 @@ export default {
     }
   },
   methods: {
-    gotopage () {
-      this.$router.push('/home')
+    gotopage (val) {
+      if (val === 1) {
+        // this.$router.push({
+        //   path: '/major_info',
+        //   query: {
+        //     id: id
+        //   }
+        // })
+        this.$router.push({
+          path: '/home',
+          query: {
+            id: val
+          }
+        })
+      } else if (val === 3) {
+        this.$router.push({
+          path: '/huashi',
+          query: {
+            id: val
+          }
+        })
+        // this.$router.push('/huashi')
+      }
     },
     clickJob () {
       this.showWhich = 'job'
@@ -161,8 +195,8 @@ export default {
     /*line-height: 65px;*/
     margin-left: 20px;
     display: inline-block;
-    top: 35%;
-    transform: translateY(-65%);
+    top: 20%;
+    transform: translateY(-80%);
   }
   .one-item__header {
     font-size: 18px;

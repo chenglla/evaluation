@@ -3,7 +3,7 @@ import qs from 'qs'
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: 'http://58.119.112.12/evaluate/evaluate', // api的base_url
+  baseURL: 'http://www.zhongkeruitong.top/evaluate/evaluate', // api的base_url
   timeout: 50000 // 请求超时时间
 })
 // request拦截器
