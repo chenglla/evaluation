@@ -4,7 +4,7 @@
       <div class="return__icon" @click="returnBack">
         <i class="iconfont iconllfanhui"></i>
       </div>
-      <div class="title">华师学习模型</div>
+      <div class="title">学习力模型</div>
     </div>
     <div class="huashiQues" ref="huashiQues">
       <div>

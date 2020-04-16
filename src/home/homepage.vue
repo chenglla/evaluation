@@ -56,25 +56,25 @@
             </div>
             <div class="one-item_content">
                <span>
-                 华师学习模型
+                 学习力模型
                </span>
             </div>
           </div>
           <!--          <p class="one__p">MBT理论认为一个人的性格可以从四个角度进行分析，用字母代表如下：驱动力来源；外向E-内向I接受信息的方式；感觉S一直觉N决策的方式；思维T-情感F对待不确定性的态度；判断J-知觉P</p>-->
         </div>
-        <div class="one-item" @click="gotopage(3)">
-          <div class="one-item__header">
-            <div class="one-item_content_img">
-              <img src="../assets/5677.jpg" width="60">
-            </div>
-            <div class="one-item_content">
-               <span>
-                 生涯控制力
-               </span>
-            </div>
-          </div>
-          <!--          <p class="one__p">MBT理论认为一个人的性格可以从四个角度进行分析，用字母代表如下：驱动力来源；外向E-内向I接受信息的方式；感觉S一直觉N决策的方式；思维T-情感F对待不确定性的态度；判断J-知觉P</p>-->
-        </div>
+<!--        <div class="one-item" @click="gotopage(3)">-->
+<!--          <div class="one-item__header">-->
+<!--            <div class="one-item_content_img">-->
+<!--              <img src="../assets/5677.jpg" width="60">-->
+<!--            </div>-->
+<!--            <div class="one-item_content">-->
+<!--               <span>-->
+<!--                 生涯控制力-->
+<!--               </span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash;          <p class="one__p">MBT理论认为一个人的性格可以从四个角度进行分析，用字母代表如下：驱动力来源；外向E-内向I接受信息的方式；感觉S一直觉N决策的方式；思维T-情感F对待不确定性的态度；判断J-知觉P</p>&ndash;&gt;-->
+<!--        </div>-->
       </div>
       <div v-if="showWhich === 'decision'" class="one-item_all">decision</div>
       <div v-if="showWhich === 'attainment'" class="one-item_all">
