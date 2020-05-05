@@ -7,7 +7,7 @@
       <div class="title">学习力模型</div>
     </div>
     <div class="huashiQues" ref="huashiQues">
-      <div>
+      <div v-if="type3Content.length > 0">
         <p class="eval_content_head">开始测评</p>
         <div class="eval_content" v-for="(item, index) in type3Content" :key="index">
           <group class="eval_content_button" @click.native="dianji(item)">
@@ -46,7 +46,7 @@ export default {
     }
   },
   mounted () {
-    this.init()
+    // this.init()
     // const _this = this
     this.getCPEvaQues()
     // setTimeout(function () {
@@ -77,6 +77,7 @@ export default {
           this.type3Content[item].options = [{key: 1, value: '是'}, {key: 2, value: '否'}]
           // this.type3Content[item].questionId = 'seleted' + item
         }
+        this.init()
         console.log(this.type3Content)
       })
       // this.init()
@@ -101,7 +102,7 @@ export default {
       }).then(res => {
         this.$store.dispatch('SET_TYPE3_ANSWER', res.data.data)
         // this.$store.commit('type3Anser', res.data.data)
-        this.$router.push('/type3_answer')
+        this.$router.push('/typeAnswer')
         console.log(res.data.data)
       })
     }
@@ -111,7 +112,7 @@ export default {
 <style scoped lang="scss">
   .huashiInfo {
     height: 100%;
-    position: absolute;
+    /*position: absolute;*/
     /*display: flex;*/
     /*flex-direction: column;*/
     background: #f8f8f8;
@@ -123,8 +124,8 @@ export default {
     width: 100%;
     background-color: #42b983;
     color: #fff;
-    height: 40px;
-    line-height: 40px;
+    height: 45px;
+    line-height: 45px;
     flex: none;
     z-index: 1;
   }
@@ -147,7 +148,9 @@ export default {
   }
   .huashiQues {
     margin: 10px;
-    position: relative;
+    position: absolute;
+    top: 45px;
+    left: 0;
     background: #fbf9fe;
     overflow: hidden;
     padding: 10px 0;

@@ -8,7 +8,9 @@ const home = () => import('@/home/index')
 const result = () => import('@/home/result')
 const homepage = () => import('@/home/homepage')
 const huashi = () => import('@/type3/huashi')
-const type3_answer = () => import('@/type3/type3_answer')
+const typeAnswer = () => import('@/type3/typeAnswer')
+const personAssessment = () => import('@/personAssessment/index')
+const personAssResult = () => import('@/personAssessment/result')
 export default new Router({
   routes: [
     {
@@ -42,12 +44,12 @@ export default new Router({
       meta: { tab: 'huashi', title: 'huashi' }
     },
     { // 华东师范测评结果
-      path: '/type3_answer',
+      path: '/typeAnswer',
       components: {
-        default: type3_answer
+        default: typeAnswer
       },
-      name: 'type3_answer',
-      meta: { tab: 'type3_answer', title: 'type3_answer' }
+      name: 'typeAnswer',
+      meta: { tab: 'typeAnswer', title: 'typeAnswer' }
     },
     {
       path: '/result',
@@ -56,6 +58,22 @@ export default new Router({
       },
       name: 'result',
       meta: { tab: 'result', title: 'result' }
+    },
+    { // 人格测试
+      path: '/personAssessment',
+      components: {
+        default: personAssessment
+      },
+      name: 'personAssessment',
+      meta: { tab: 'personAssessment', title: 'personAssessment' }
+    },
+    { // 人格测试结果
+      path: '/personAssResult',
+      components: {
+        default: personAssResult
+      },
+      name: 'personAssResult',
+      meta: { tab: 'personAssResult', title: 'personAssResult' }
     },
     {
       path: '/major_info',

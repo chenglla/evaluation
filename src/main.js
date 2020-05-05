@@ -7,7 +7,7 @@ import VueRouter from 'vue-router'
 import FastClick from 'fastclick'
 import vueTap from 'vue-js-tap'
 import echarts from 'echarts'
-import { ToastPlugin, ConfirmPlugin, LoadingPlugin, Calendar, DatetimePlugin, Toast } from 'vux'
+import { Radio, XButton, ToastPlugin, ConfirmPlugin, LoadingPlugin, Calendar, DatetimePlugin, Toast } from 'vux'
 import store from './store'
 import 'jQuery'
 
@@ -15,6 +15,8 @@ Vue.use(VueRouter)
 Vue.use(vueTap)
 
 Vue.component('toast', Toast)
+Vue.component('radio', Radio)
+Vue.component('x-button', XButton)
 Vue.component('calendar', Calendar)
 Vue.use(ToastPlugin)
 Vue.use(ConfirmPlugin)

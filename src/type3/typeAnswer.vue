@@ -24,13 +24,13 @@
 export default {
   data () {
     return {
-      hsAnsContent: this.$store.state.type3Anser,
+      hsAnsContent: this.$store.state.huashi.type3Anser,
       radarChart: '',
       rusultList: []
     }
   },
   mounted () {
-    console.log(this.$store.state.type3Anser)
+    console.log(this.$store.state.huashi.type3Anser)
     this.getRadarChart()
   },
   methods: {
