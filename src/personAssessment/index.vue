@@ -88,15 +88,26 @@ export default {
       console.log(this.choice)
       var personIndexList = document.querySelectorAll('.personItemOption')
       // var newBQ = ``
-      var newBQ = document.createElement('i')
-      // newBQ.setAttribute('class', 'iconfont iconllduigou3')
-      newBQ.className = 'iconfont iconllduigou3'
-      newBQ.style.cssText = 'color: #42b983;float: right;margin-right: 25px;'
+      // var newBQ = document.createElement('i')
+      // // newBQ.setAttribute('class', 'iconfont iconllduigou3')
+      // newBQ.className = 'iconfont iconllduigou3'
+      // newBQ.style.cssText = 'color: #42b983;float: right;margin-right: 25px;'
       // newBQ.style.color = '#42b983'
       // newBQ.innerHTML = `<i class="iconfont iconllduigou3"></i>`
       // personIndexList[index].querySelectorAll('personAssOption')
       console.log(personIndexList[index].children[option])
+      for (let i = 0; i < personIndexList[index].children.length; i++) {
+        personIndexList[index].children[i].className = 'personAssOption'
+        console.log('有啊', personIndexList[index].children[i])
+        if (personIndexList[index].children[i].querySelector('.iconfont') !== null) {
+          personIndexList[index].children[i].removeChild(personIndexList[index].children[i].querySelector('.iconfont'))
+        }
+      }
       personIndexList[index].children[option].className = 'personAssOption optionActive'
+      var newBQ = document.createElement('i')
+      // newBQ.setAttribute('class', 'iconfont iconllduigou3')
+      newBQ.className = 'iconfont iconllduigou3'
+      newBQ.style.cssText = 'color: #42b983;float: right;margin-right: 25px;'
       personIndexList[index].children[option].appendChild(newBQ)
     },
     submit_t () {

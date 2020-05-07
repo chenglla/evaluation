@@ -113,7 +113,13 @@ export default {
           // areaStyle: {normal: {}},
           data: [
             {
-              value: this.dataEchart
+              value: this.dataEchart,
+              label: {
+                show: true,
+                formatter: function(params) {
+                  return params.value;
+                }
+              }
             }
           ]
         }]
