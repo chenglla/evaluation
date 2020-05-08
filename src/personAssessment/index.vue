@@ -13,8 +13,12 @@
         <div v-for="(item, index) in personAssList" :key="index" class="personAssItem">
           <span>{{item.questions}}</span>
           <div class="personItemOption">
-            <div class="personAssOption" @click="gotoSelect(index, 0)">A. 是</div>
-            <div class="personAssOption" @click="gotoSelect(index, 1)">B. 否</div>
+            <div v-for="(item, i) in options" :key="i" @click="gotoSelect(index, i)" class="personAssOption">
+              <span>{{item.key}}</span>
+              <span>{{item.value}}</span>
+            </div>
+<!--            <div class="personAssOption" @click="gotoSelect(index, 0)">A. 是</div>-->
+<!--            <div class="personAssOption" @click="gotoSelect(index, 1)">B. 否</div>-->
             <!--       <i class="iconfont iconllduigou3"></i>   -->
           </div>
         </div>
@@ -35,12 +39,24 @@ export default {
       choice: {},
       personAssScroll: null,
       options: [{
-        key: 1,
-        value: 'A 是'
+        key: 'A.',
+        value: '完全不同意'
       },
       {
-        key: 2,
-        value: 'B 否'
+        key: 'B.',
+        value: '  不太同意'
+      },
+      {
+        key: 'C.',
+        value: '  中立'
+      },
+      {
+        key: 'D.',
+        value: '  同意'
+      },
+      {
+        key: 'E.',
+        value: '  完全同意'
       }],
     }
   },
@@ -84,7 +100,7 @@ export default {
       })
     },
     gotoSelect (index, option) { // 进行选择
-      this.choice[index + 1] = option
+      this.choice[index + 1] = option + 1
       console.log(this.choice)
       var personIndexList = document.querySelectorAll('.personItemOption')
       // var newBQ = ``
@@ -153,8 +169,14 @@ export default {
   }
   .personAssOption {
     padding: 5px 3px;
+    font-size: 14px;
     margin-left: 1em;
     color: #7c7c7c;
+    text-indent: 1em;
+    /*border-bottom: 1px solid #eee;*/
+    span:first-child {
+      margin-right: 5px;
+    }
   }
   .iconllduigou3 {
     color: #42b983;
