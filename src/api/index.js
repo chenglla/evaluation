@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getType3Question (req) {
   return request({
-    url: 'getExercisesByType',
+    url: '/getExercisesByType',
     method: 'get',
     params: req
   })

@@ -30,7 +30,7 @@
                 <span>{{mbti.describe}}</span>
               </div>
               <h4 class="eval_content_h">职业推荐</h4>
-              <div v-for="item in professionInfoList" :key="item" class="eval_content_p" @click="major_info(item.id)">
+              <div v-for="(item, index) in professionInfoList" :key="index" class="eval_content_p" @click="major_info(item.id)">
                 <span  >{{item.ktname}}--{{item.submajorName}}</span>
               </div>
             </div>
@@ -41,6 +41,7 @@
   </div>
 </template>
 <script>
+import request from '@/utils/request'
 export default {
   data () {
     return {
@@ -48,12 +49,18 @@ export default {
       professionInfoList: []
     }
   },
+  computed: {
+    form () {
+      return JSON.parse(this.$route.query.formList)
+    }
+  },
   mounted () {
     this.$router.afterEach((to, from, next) => {
       window.scrollTo(0, 0)
     })
-    this.mbti = this.$store.state.msg.mbti
-    this.professionInfoList = this.$store.state.msg.professionInfoList
+    this.getResult()
+    // this.mbti = this.$store.state.msg.mbti
+    // this.professionInfoList = this.$store.state.msg.professionInfoList
   },
   methods: {
     major_info (id) {
@@ -67,6 +74,20 @@ export default {
     gotoPage () {
       console.log('return')
       this.$router.go(-1)
+    },
+    getResult () {
+      request({
+        url: '/mbti/submitEvaluate',
+        method: 'POST',
+        params: {
+          result: this.form,
+          openid: '123'
+        }
+      }).then(response => {
+        this.mbti = response.data.data.mbti
+        this.professionInfoList = response.data.data.professionInfoList
+        this.result = response.data.data
+      })
     }
   }
 }

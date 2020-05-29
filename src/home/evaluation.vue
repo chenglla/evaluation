@@ -503,28 +503,34 @@ export default {
       // if (this.flag === true) {
       //   alert('请答完所有题再进行提交！')
       // } else {
-      request({
-        url: '/mbti/submitEvaluate',
-        method: 'POST',
-        params: {
-          result: this.form,
-          openid: '123'
+      this.$router.push({
+        name: 'result',
+        query: {
+          formList: JSON.stringify(this.form)
         }
-      }).then(response => {
-        this.mbti = response.data.data.mbti
-        this.professionInfoList = response.data.data.professionInfoList
-        this.result = response.data.data
-        this.$store.dispatch('changeMsg', this.result)
-
-        // this.$router.push({
-        //   path: '/result',
-        //   query: {
-        //     result: this.result
-        //   }
-        // })
-        this.$router.push('/result')
-        // console.log('val2:', this.result)
       })
+      // request({
+      //   url: '/mbti/submitEvaluate',
+      //   method: 'POST',
+      //   params: {
+      //     result: this.form,
+      //     openid: '123'
+      //   }
+      // }).then(response => {
+      //   this.mbti = response.data.data.mbti
+      //   this.professionInfoList = response.data.data.professionInfoList
+      //   this.result = response.data.data
+      //   this.$store.dispatch('changeMsg', this.result)
+      //
+      //   // this.$router.push({
+      //   //   path: '/result',
+      //   //   query: {
+      //   //     result: this.result
+      //   //   }
+      //   // })
+      //   this.$router.push('/result')
+      //   // console.log('val2:', this.result)
+      // })
       // }
 
       // console.log(this.form)
